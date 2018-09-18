@@ -1,5 +1,6 @@
 package com.zjc.wx_store.web;
 
+import com.zjc.wx_store.order.model.QSysUser;
 import com.zjc.wx_store.order.model.SysUser;
 import com.zjc.wx_store.order.service.impl.SysUserServiceImpl;
 import org.junit.Test;
@@ -25,7 +26,5 @@ public class UserController {
     }
 
     public static void main(String[] args) {
-//        Page<SysUser> list = sysUserService.list(new PageRequest(1, 10));
-//        System.out.println(list);
     }
 }
