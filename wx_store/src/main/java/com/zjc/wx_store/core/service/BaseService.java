@@ -1,36 +1,21 @@
 package com.zjc.wx_store.core.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 
-@Service
-public class BaseService<REPO extends JpaRepository<E, ID>, E, ID extends Serializable> {
-    @Autowired
-    private REPO repo;
+public interface BaseService<E, ID extends Serializable> {
 
-    public E get(ID id) {
-        return repo.getOne(id);
-    }
+    E get(ID id);
 
-    public void delete(ID id) {
-        repo.deleteById(id);
-    }
+    Page<E> list(Pageable pageable);
 
-    public E update(E e) {
-        return repo.saveAndFlush(e);
-    }
+    E save(E e);
 
-    public E add(E e) {
-        return repo.save(e);
-    }
+    void delete(ID id);
 
-    public Page<E> list(Pageable pageable) {
-        return repo.findAll(pageable);
-    }
+    E update(E e);
 
 }
