@@ -1,8 +1,8 @@
 package com.zjc.wx_store.core.service;
 
+import com.querydsl.core.types.dsl.EntityPathBase;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
 
@@ -17,5 +17,7 @@ public interface BaseService<E, ID extends Serializable> {
     void delete(ID id);
 
     E update(E e);
+
+     Page<E> find(E e, Pageable pageable);
 
 }

@@ -1,16 +1,20 @@
 package com.zjc.wx_store.core.service.impl;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.zjc.wx_store.core.Utils.QUtils;
+import com.zjc.wx_store.core.repository.BaseRepository;
 import com.zjc.wx_store.core.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.io.Serializable;
 
-public class BaseServiceImpl<REPO extends JpaRepository<E, ID>, E, ID extends Serializable> implements BaseService<E, ID> {
+public abstract class BaseServiceImpl<E, ID extends Serializable, REPO extends BaseRepository<E, ID>>
+        implements BaseService<E, ID> {
+
     @Autowired
-    private REPO repo;
+    protected REPO repo;
 
     @Override
     public E get(ID id) {
@@ -35,4 +39,12 @@ public class BaseServiceImpl<REPO extends JpaRepository<E, ID>, E, ID extends Se
     public E update(E o) {
         return repo.saveAndFlush(o);
     }
+
+    @Override
+    public Page<E> find(E e, Pageable pageable) {
+        BooleanExpression booleanExpression = QUtils.setQuery(e);
+        Page<E> all = repo.findAll(booleanExpression, pageable);
+        return all;
+    }
+
 }

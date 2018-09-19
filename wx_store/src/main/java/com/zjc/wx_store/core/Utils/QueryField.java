@@ -1,0 +1,13 @@
+package com.zjc.wx_store.core.Utils;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target({ElementType.FIELD,ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface QueryField {
+    QueryType method() default QueryType.EQ;
+
+}

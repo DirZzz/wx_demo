@@ -1,5 +1,6 @@
 package com.zjc.wx_store.web;
 
+import com.zjc.wx_store.core.controller.BaseController;
 import com.zjc.wx_store.product.model.Product;
 import com.zjc.wx_store.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class ProductController {
 
     @GetMapping("list")
     public Object list(Pageable pageable) {
+        Product product = new Product();
+        if (true) {
+            throw new RuntimeException("it's error;");
+        }
+        Long modifierId = product.getModifierId();
+        productService.saveBiz("hshs");
         Page<Product> list = productService.list(pageable);
         return list;
     }

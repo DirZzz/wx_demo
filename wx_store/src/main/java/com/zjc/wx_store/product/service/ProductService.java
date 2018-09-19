@@ -5,4 +5,6 @@ import com.zjc.wx_store.product.model.Product;
 
 public interface ProductService extends BaseService<Product, Long> {
 
+    void saveBiz(Object object);
+
 }
