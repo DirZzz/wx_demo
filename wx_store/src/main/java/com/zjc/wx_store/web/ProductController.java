@@ -1,36 +1,29 @@
 package com.zjc.wx_store.web;
 
-import com.zjc.wx_store.core.controller.BaseController;
-import com.zjc.wx_store.product.model.Product;
-import com.zjc.wx_store.product.service.ProductService;
+import com.zjc.wx_store.core.controller.CrudController;
+import com.zjc.wx_store.product.model.dto.ProductDTO;
+import com.zjc.wx_store.product.model.vo.ProductVO;
+import com.zjc.wx_store.product.service.biz.impl.ProductBizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.PostConstruct;
 
 
 @RestController
 @RequestMapping("product")
-public class ProductController {
-    private final ProductService productService;
+public class ProductController extends CrudController<ProductDTO, ProductVO, Long, ProductBizService> {
+
+    private final ProductBizService productBizService;
 
     @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public ProductController(ProductBizService productBizService) {
+        this.productBizService = productBizService;
     }
 
-    @GetMapping("list")
-    public Object list(Pageable pageable) {
-        Product product = new Product();
-        if (true) {
-            throw new RuntimeException("it's error;");
-        }
-        Long modifierId = product.getModifierId();
-        productService.saveBiz("hshs");
-        Page<Product> list = productService.list(pageable);
-        return list;
+    @PostConstruct
+    public void postConstruct() {
     }
 
 }

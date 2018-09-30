@@ -14,6 +14,12 @@ public class ControllerHelper {
         return e.getMessage();
     }
 
+//    @ExceptionHandler({IllegalArgumentException.class})
+    @ResponseBody
+    public Object handleIllegalException(IllegalArgumentException e) {
+        return e.getMessage();
+    }
+
 }
 
 

@@ -16,7 +16,7 @@ public class WxStoreApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		productService.saveBiz("sdfsdf");
+//		productService.save("sdfsdf");
 	}
 
 }
